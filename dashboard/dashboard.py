@@ -7,7 +7,10 @@ import seaborn as sns
 # ==============================Load Dataset========================================#
 @st.cache_data
 
-all_data = pd.read_csv("all_data.csv")
+def load_data():
+    url = "https://raw.githubusercontent.com/projekardana/e-commerce-analysysis-data-science/main/dashboard/all_data.csv"
+    df = pd.read_csv(url)
+    return df
 
 # ======================Sidebar Menu====================== #
 with st.sidebar:
