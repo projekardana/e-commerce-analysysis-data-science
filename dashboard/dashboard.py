@@ -6,17 +6,8 @@ import seaborn as sns
 
 # ==============================Load Dataset========================================#
 @st.cache_data
-def load_data():
-    try:
-        df = pd.read_csv(path, sep=",", encoding="utf-8", on_bad_lines="skip")
-    except Exception:
-        try:
-            df = pd.read_csv(path, sep=";", encoding="utf-8", on_bad_lines="skip")
-        except Exception:
-            df = pd.read_csv(path, sep=",", encoding="latin1", on_bad_lines="skip")
-    return df
 
-all_data = load_data()
+all_data = pd.read_csv("all_data.csv")
 
 # ======================Sidebar Menu====================== #
 with st.sidebar:
