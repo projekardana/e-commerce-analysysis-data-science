@@ -7,9 +7,16 @@ import seaborn as sns
 # ==============================Load Dataset========================================#
 @st.cache_data
 def load_data():
+    local_path = "dashboard/all_data.csv"
     url = "https://github.com/projekardana/e-commerce-analysysis-data-science/blob/cfddfd8c889bd6aecc8b5621908057e6f3252f30/dashboard/all_data.csv"
-    df = pd.read_csv(url)
 
+
+    if os.path.exists(local_path):
+        df = pd.read_csv(local_path)
+        st.success("Success Data dimuat di local")
+    else :
+        df = pd.read_csv(url)
+        st.success("Success Data dimuat dari server GitHub")
     return df
 
 all_data = load_data()
