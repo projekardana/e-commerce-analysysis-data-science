@@ -7,15 +7,13 @@ import seaborn as sns
 # ==============================Load Dataset========================================#
 @st.cache_data
 def load_data():
-    try:
-        df = pd.read_csv("all_data.csv", sep=",", on_bad_lines="skip", encoding="utf-8")
-    except Exception as e1:
-        st.warning(f"Gagal baca dengan koma, coba titik koma. Error: {e1}")
+    ry:
+        df = pd.read_csv(path, sep=",", encoding="utf-8", on_bad_lines="skip")
+    except Exception:
         try:
-            df = pd.read_csv("all_data.csv", sep=";", on_bad_lines="skip", encoding="utf-8")
-        except Exception as e2:
-            st.error(f"Gagal baca CSV. Error: {e2}")
-            return pd.DataFrame()
+            df = pd.read_csv(path, sep=";", encoding="utf-8", on_bad_lines="skip")
+        except Exception:
+            df = pd.read_csv(path, sep=",", encoding="latin1", on_bad_lines="skip")
     return df
 
 all_data = load_data()
