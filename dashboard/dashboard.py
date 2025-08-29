@@ -88,9 +88,9 @@ elif page == "Order Trend":
 elif page == "Geolocation Analysis":
     st.header("Sebaran Pesanan Pelanggan Berdasarkan Lokasi")
 
-    orders = pd.read_csv("order_df.csv")
-    customers = pd.read_csv("customers.csv")
-    geolocation = pd.read_csv("geolocation.csv")
+    orders = pd.read_csv("https://raw.githubusercontent.com/projekardana/e-commerce-analysysis-data-science/main/dashboard/order_df.csv")
+    customers = pd.read_csv("https://raw.githubusercontent.com/projekardana/e-commerce-analysysis-data-science/main/dashboard/customers.csv")
+    geolocation = pd.read_csv("https://raw.githubusercontent.com/projekardana/e-commerce-analysysis-data-science/main/dashboard/geolocation.csv")
 
     geo_agg = geolocation.groupby("geolocation_zip_code_prefix")[["geolocation_lat", "geolocation_lng"]].mean().reset_index()
     orders_customer = orders.merge(customers, on="customer_id", how="left")
@@ -119,7 +119,7 @@ elif page == "Geolocation Analysis":
 elif page == "Analysis Lanjutan (RFM)":
     st.title("Analysis Lanjutan (RFM)")
 
-    df = url.copy()
+    df = all_data.copy()
     df['order_purchase_timestamp'] = pd.to_datetime(df['order_purchase_timestamp'])
 
     snapshot_date = df['order_purchase_timestamp'].max() + pd.Timedelta(days=1)
