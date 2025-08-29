@@ -7,7 +7,7 @@ import seaborn as sns
 # ==============================Load Dataset========================================#
 @st.cache_data
 def load_data():
-    ry:
+    try:
         df = pd.read_csv(path, sep=",", encoding="utf-8", on_bad_lines="skip")
     except Exception:
         try:
