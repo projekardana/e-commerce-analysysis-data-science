@@ -1,21 +1,20 @@
+import os
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# ======================
-# Load Dataset
-# ======================
+# ==============================Load Dataset========================================#
 @st.cache_data
 def load_data():
-    df = pd.read_csv("all_data.csv")
+    url = "https://github.com/projekardana/e-commerce-analysysis-data-science/blob/cfddfd8c889bd6aecc8b5621908057e6f3252f30/dashboard/all_data.csv"
+    df = pd.read_csv(url)
+
     return df
 
 all_data = load_data()
 
-# ======================
-# Sidebar Menu
-# ======================
+# ======================Sidebar Menu====================== #
 with st.sidebar:
     st.image("img/Logo.png")
     st.title("Dashboard E-Commerce")
@@ -28,9 +27,7 @@ page = st.sidebar.radio("Pilih Halaman", [
     "Analysis Lanjutan (RFM)"
 ])
 
-# ======================
-# Halaman Beranda
-# ======================
+# ======================Beranda====================== #
 if page == "Beranda":
     st.title("E-Commerce Dashboard")
     st.markdown("Dashboard ini menampilkan hasil analisis dari dataset `all_data.csv`")
@@ -41,9 +38,7 @@ if page == "Beranda":
     st.subheader("Info Kolom Dataset")
     st.write(list(all_data.columns))
 
-# ======================
-# Delivery Analysis
-# ======================
+# ======================Delivery Analysis====================== #
 elif page == "Delivery Analysis":
     st.title("Rata-rata Waktu Pengiriman")
 
@@ -64,9 +59,7 @@ elif page == "Delivery Analysis":
     ax.set_xlabel("Hari")
     st.pyplot(fig)
 
-# ======================
-# Payment Methods
-# ======================
+# ======================Payment Methods====================== #
 elif page == "Payment Methods":
     st.title("Metode Pembayaran Populer")
 
@@ -78,9 +71,7 @@ elif page == "Payment Methods":
     ax.set_title("Distribusi Metode Pembayaran")
     st.pyplot(fig)
 
-# ======================
-# Order Trend
-# ======================
+# ======================Order Trend====================== #
 elif page == "Order Trend":
     st.title("Tren Jumlah Pesanan per Bulan")
 
@@ -93,9 +84,7 @@ elif page == "Order Trend":
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
-# ==============================
-# Halaman: Geolocation Analysis
-# ==============================
+# ==============================Geolocation Analysis============================== #
 elif page == "Geolocation Analysis":
     st.header("Sebaran Pesanan Pelanggan Berdasarkan Lokasi")
 
@@ -126,9 +115,7 @@ elif page == "Geolocation Analysis":
     #     Menampilkan Peta
     st.map(orders_geo[["lat", "lon"]])
 
-# ======================
-# Analysis Lanjutan (RFM)
-# ======================
+# ====================== Analysis Lanjutan (RFM) ====================== #
 elif page == "Analysis Lanjutan (RFM)":
     st.title("Analysis Lanjutan (RFM)")
 
