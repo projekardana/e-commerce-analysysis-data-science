@@ -12,6 +12,8 @@ def load_data():
     df = pd.read_csv(url)
     return df
 
+all_data = load_data()
+
 # ======================Sidebar Menu====================== #
 with st.sidebar:
     st.image("img/Logo.png")
@@ -117,7 +119,7 @@ elif page == "Geolocation Analysis":
 elif page == "Analysis Lanjutan (RFM)":
     st.title("Analysis Lanjutan (RFM)")
 
-    df = all_data.copy()
+    df = url.copy()
     df['order_purchase_timestamp'] = pd.to_datetime(df['order_purchase_timestamp'])
 
     snapshot_date = df['order_purchase_timestamp'].max() + pd.Timedelta(days=1)
